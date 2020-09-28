@@ -1,0 +1,35 @@
+*** QUICKSTART *** version 0.2.6
+
+Requirements
+
+The python script in this TA is dependant on the boto3 library - https://pypi.org/project/boto3/
+
+A copy of this is supplied in the TA bin directory
+
+
+Configuration  
+
+1. Configure aws credentials for S3 access at the user home 
+
+~/.aws/credentials
+
+[default]
+aws_access_key_id=XXXXXXXXXXXXXX
+aws_secret_access_key=YYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+Credentials are stored here and can be accessed by the script as it's a more secure location than putting in the script themselves.
+
+Credentials should be for an IAM role that has access to the destination bucket.
+
+
+2. Set the destination bucket name within the script in the S3_BUCKET variable
+
+
+3. Install the app on Indexers only - NOTE - this will change the default behaviour of ALL indexes to freeze to S3 once retention time has been reached. 
+
+If you don't want every index frozen to S3, remove the default indexes.conf file from the TA before deployment.
+
+Be sure to set the coldToFrozenScript parameter for only indexes that need to be frozen.
+
+
+4. Upon restart, buckets that expire will freeze to S3
